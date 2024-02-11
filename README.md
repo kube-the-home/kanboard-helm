@@ -1,5 +1,5 @@
 # kanboard-helm
-Helm Chart to simplify the deployment of Kanboard
+Helm Chart to simplify the deployment of [Kanboard](https://github.com/kanboard/kanboard).
 
 ## Installation
 
