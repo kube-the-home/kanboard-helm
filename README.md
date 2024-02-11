@@ -10,3 +10,7 @@ helm repo add kanboard https://kube-the-home.github.io/kanboard-helm/
 helm install kanboard/kanboard
 ```
 
+## Documentation
+- [All](https://kube-the-home.github.io/kube-the-home/)
+- [Contributing](https://kube-the-home.github.io/kube-the-home/Contribution/)
+- [Helm Chart](https://kube-the-home.github.io/kube-the-home/Helm-Charts/kanboard/)
