@@ -1,0 +1,18 @@
+{{- if .Values.application.persistence.enabled -}}
+{{- if .Values.application.persistence.persistentVolumeClaim.create -}}
+
+{{- $name := include "kanboard.name" . -}}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $name }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.application.persistence.persistentVolumeClaim.storageClass }}
+  resources:
+    requests:
+      storage: {{ .Values.application.persistence.persistentVolumeClaim.size }}
+{{- end -}}
+{{- end -}}

@@ -6,7 +6,14 @@ image:
 
 application:
   port: 80
-  persistence: false
+  persistence:
+    enabled: false
+    persistentVolumeClaim:
+      name: kanboard-pvc
+      create: true
+      storageClass: manual
+      size: 5Gi
+    
 
 
 nodePort:
@@ -24,7 +31,9 @@ ingress:
   tls: ~
 
 securityContext:
-  pod: ~
-  container: ~
+  pod: 
+    readOnlyRootFilesystem: true
+  container: 
+    readOnlyRootFilesystem: true
 
 resources: ~
