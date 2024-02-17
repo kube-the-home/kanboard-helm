@@ -13,6 +13,7 @@ application:
       create: true
       storageClass: manual
       size: 5Gi
+      accessMode: ReadWriteMany
     
 
 

@@ -6,9 +6,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.application.persistence.persistentVolumeClaim.name }}
 spec:
-  accessModes:
-    - ReadWriteOnce
   storageClassName: {{ .Values.application.persistence.persistentVolumeClaim.storageClass }}
+  accessModes:
+    - {{ .Values.application.persistence.persistentVolumeClaim.accessMode }}  
   resources:
     requests:
       storage: {{ .Values.application.persistence.persistentVolumeClaim.size }}
