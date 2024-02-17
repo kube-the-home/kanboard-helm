@@ -40,30 +40,20 @@ spec:
           - containerPort: {{ .Values.application.port }}
         volumeMounts:
         - mountPath: /var/www/app/data
-          name: data-volume
+          name: storage-volume
+          subPath: data/
         - mountPath: /var/www/app/plugins
-          name: plugins-volume
+          name: storage-volume
+          subPath: plugins/
         - mountPath: /etc/nginx/ssl
           name: ssl-volume
       volumes:
-      - name: data-volume
-        {{- if .Values.application.persistence }}
+      - name: storage-volume
+        {{- if .Values.application.persistence.enabled }}
         persistentVolumeClaim:
-            claimName: {{ $name }}-data-claim
-        {{- else}}
-        emptyDir: {}
-        {{- end }}
-      - name: plugins-volume
-        {{- if .Values.application.persistence }}
-        persistentVolumeClaim:
-            claimName: {{ $name }}-plugins-claim
+            claimName: {{ .Values.application.persistence.persistentVolumeClaim.name }}
         {{- else}}
         emptyDir: {}
         {{- end }}
       - name: ssl-volume
-        {{- if .Values.application.persistence }}
-        persistentVolumeClaim:
-            claimName: {{ $name }}-ssl-claim
-        {{- else}}
         emptyDir: {}
-        {{- end }}
