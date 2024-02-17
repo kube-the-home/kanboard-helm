@@ -32,9 +32,7 @@ ingress:
   tls: ~
 
 securityContext:
-  pod: 
-    readOnlyRootFilesystem: true
-  container: 
-    readOnlyRootFilesystem: true
+  pod: ~
+  container: ~
 
 resources: ~
