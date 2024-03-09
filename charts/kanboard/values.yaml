@@ -27,6 +27,7 @@ clusterip:
 
 ingress:
   enabled: false
+  annotations: {}
   ingressClassName: "nginx"
   host: ~
   tls: ~

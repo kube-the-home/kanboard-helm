@@ -12,15 +12,15 @@ spec:
   selector:
     matchLabels:
       app: {{ $name }}
-  {{- if .Values.securityContext.pod }}
-  securityContext:
-  {{- toYaml .Values.securityContext.pod | nindent 4 }}
-  {{ end }}
   template:
     metadata:
       labels:
         app: {{ $name }}
     spec:
+      {{- if .Values.securityContext.pod }}
+      securityContext:
+        {{- toYaml .Values.securityContext.pod | nindent 8 }}
+      {{- end }}
       containers:
       - name: {{ $name }}
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
