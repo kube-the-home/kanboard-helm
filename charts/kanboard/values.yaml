@@ -11,7 +11,7 @@ application:
     persistentVolumeClaim:
       name: kanboard-pvc
       create: true
-      storageClass: manual
+      storageClass: default
       size: 5Gi
       accessMode: ReadWriteMany
     
