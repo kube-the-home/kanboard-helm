@@ -16,6 +16,9 @@ spec:
     metadata:
       labels:
         app: {{ $name }}
+        {{- if .Values.application.additionalLabels }}
+        {{- toYaml .Values.application.additionalLabels | nindent 8 }}
+        {{- end }}
     spec:
       {{- if .Values.securityContext.pod }}
       securityContext:

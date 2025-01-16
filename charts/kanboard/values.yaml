@@ -6,6 +6,7 @@ image:
 
 application:
   port: 80
+  additionalLabels: {}
   persistence:
     enabled: false
     persistentVolumeClaim:
