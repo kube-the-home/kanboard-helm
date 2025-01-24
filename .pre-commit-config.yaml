@@ -1,0 +1,7 @@
+
+repos:
+  - repo: https://github.com/losisin/helm-values-schema-json
+    rev: v1.6.4
+    hooks:
+      - id: helm-schema
+        args: ["-input", "charts/kanboard/values.yaml", "-output", "charts/kanboard/values.schema.json"]
