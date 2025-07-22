@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/kube-the-home/kanboard-helm/compare/1.0.1...1.0.2) (2025-07-22)
+
+
+### Bug Fixes
+
+* use the new deploy token ([3d29e09](https://github.com/kube-the-home/kanboard-helm/commit/3d29e0997b687ba77d023a885f03d9d07757df41))
+
 ## [1.0.1](https://github.com/kube-the-home/kanboard-helm/compare/1.0.0...1.0.1) (2025-06-24)
 
 
