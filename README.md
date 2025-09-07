@@ -14,3 +14,4 @@ helm install kanboard/kanboard
 - [All](https://kube-the-home.github.io/kube-the-home/)
 - [Contributing](https://kube-the-home.github.io/kube-the-home/Contribution/)
 - [Helm Chart](https://kube-the-home.github.io/kube-the-home/Helm-Charts/kanboard/)
+- 
