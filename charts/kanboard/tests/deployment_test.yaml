@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kanboard-test
+  labels:
+    app: kanboard
+spec:
+  containers:
+    - name: kanboard
+      image: your-image:latest
+      ports:
+        - containerPort: 80
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kanboard-service
+spec:
+  selector:
+    app: kanboard
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kanboard-test-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: kanboard-test
+          image: your-image:latest
+          command: ["sh", "-c", "curl -f http://kanboard-service:80 || exit 1"]
+      restartPolicy: Never
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kanboard-test-sa
+---
+apiVersion: v1
+kind: Role
+metadata:
+  name: kanboard-test-role
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kanboard-test-rolebinding
+subjects:
+  - kind: ServiceAccount
+    name: kanboard-test-sa
+roleRef:
+  kind: Role
+  name: kanboard-test-role
+  apiGroup: rbac.authorization.k8s.io
