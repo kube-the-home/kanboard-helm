@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kube-the-home/kanboard-helm/compare/1.0.3...1.1.0) (2025-09-12)
+
+
+### Features
+
+* adding env vars to application ([ea92e43](https://github.com/kube-the-home/kanboard-helm/commit/ea92e433a5680bb8e838b60c942182ce44afd6db))
+
 ## [1.0.3](https://github.com/kube-the-home/kanboard-helm/compare/1.0.2...1.0.3) (2025-08-15)
 
 
