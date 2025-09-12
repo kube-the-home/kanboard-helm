@@ -39,6 +39,9 @@ spec:
         env:
         - name: LOG_DRIVER
           value: "stdout"
+        {{- with .Values.application.env }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         ports:
           - containerPort: {{ .Values.application.port }}
         volumeMounts:
