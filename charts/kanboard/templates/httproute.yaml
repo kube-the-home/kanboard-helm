@@ -30,5 +30,5 @@ spec:
             value: /
       backendRefs:
         - name: {{ $name }}
-          port: {{ .Values.clusterip.port }}
+          port: {{ .Values.service.port }}
 {{- end }}

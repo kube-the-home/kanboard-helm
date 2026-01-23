@@ -45,6 +45,7 @@ spec:
         {{- end }}
         ports:
           - containerPort: {{ .Values.application.port }}
+            name: http
         volumeMounts:
         - mountPath: /var/www/app/data
           name: storage-volume

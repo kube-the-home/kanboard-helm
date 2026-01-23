@@ -19,15 +19,11 @@ application:
       accessMode: ReadWriteMany
   env: []
     
-
-
-nodePort:
+service:
   enabled: false
-  port: ~
-
-clusterip:
-  enabled: false
+  type: ClusterIP
   port: 8080
+  nodePort: ~
 
 ingress:
   enabled: false
@@ -42,7 +38,7 @@ route:
   labels: {}
   hostnames: []
   parentRefs: []
-  
+
 securityContext:
   pod: ~
   container: ~
