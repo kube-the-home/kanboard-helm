@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/kube-the-home/kanboard-helm/compare/1.1.2...1.1.3) (2026-01-23)
+
+
+### Bug Fixes
+
+* **deps:** update webiny/action-conventional-commits action to v1.3.1 ([c25d3e8](https://github.com/kube-the-home/kanboard-helm/commit/c25d3e85e68e7d90e43760b6ceb7f5f1c56a6282))
+
 ## [1.1.2](https://github.com/kube-the-home/kanboard-helm/compare/1.1.1...1.1.2) (2026-01-07)
 
 
