@@ -4,6 +4,8 @@ image:
   tag: "v1.2.49" # renovate docker docker.io/kanboard/kanboard
   pullPolicy: "IfNotPresent"
 
+revisionHistoryLimit: 1
+
 application:
   port: 80
   additionalLabels: {}
