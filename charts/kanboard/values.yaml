@@ -1,46 +1,113 @@
+# -- Docker image configuration for Kanboard
 image:
+  # -- Docker registry to pull the image from
   registry: "docker.io"
+  # -- Docker image repository
   repository: "kanboard/kanboard"
+  # -- Image tag (version) to use
   tag: "v1.2.49" # renovate docker docker.io/kanboard/kanboard
+  # -- Image pull policy (IfNotPresent, Always, Never)
   pullPolicy: "IfNotPresent"
 
+# -- Number of old ReplicaSets to retain for rollback
 revisionHistoryLimit: 1
 
+# -- Application configuration
 application:
+  # -- Port on which Kanboard listens inside the container
   port: 80
+  # -- Additional labels to add to the deployment
   additionalLabels: {}
+  # -- Persistence configuration for Kanboard data
   persistence:
+    # -- Enable persistent storage for Kanboard data
     enabled: false
     persistentVolumeClaim:
+      # -- Name of the PersistentVolumeClaim
       name: kanboard-pvc
+      # -- Create a new PVC (set to false to use an existing PVC)
       create: true
+      # -- Storage class to use for the PVC
       storageClass: default
+      # -- Size of the persistent volume
       size: 5Gi
+      # -- Access mode for the persistent volume (ReadWriteOnce, ReadWriteMany, ReadOnlyMany)
       accessMode: ReadWriteMany
+  # -- Additional environment variables for the Kanboard container
+  # Example:
+  # env:
+  #   - name: DEBUG
+  #     value: "true"
   env: []
     
+# -- Kubernetes Service configuration
 service:
+  # -- Enable service creation, will also be created if ingress or route is enabled
   enabled: false
+  # -- Service type (ClusterIP, NodePort, LoadBalancer)
   type: ClusterIP
+  # -- Service port
   port: 8080
+  # -- NodePort (only used when type is NodePort)
   nodePort: ~
 
+# -- Ingress configuration for exposing Kanboard externally
 ingress:
+  # -- Enable ingress creation
   enabled: false
+  # -- Annotations for the ingress resource (e.g., cert-manager, auth)
   annotations: {}
+  # -- Ingress class name to use (e.g., nginx, traefik)
   ingressClassName: "nginx"
+  # -- Hostname for the ingress
   host: ~
+  # -- TLS configuration for the ingress
+  # Example:
+  # tls:
+  #   - secretName: kanboard-tls
+  #     hosts:
+  #       - kanboard.example.com
   tls: ~
 
+# -- Gateway API HTTPRoute configuration (alternative to Ingress)
 route:
+  # -- Enable HTTPRoute creation
   enabled: false
+  # -- Annotations for the HTTPRoute resource
   annotations: {}
+  # -- Labels for the HTTPRoute resource
   labels: {}
+  # -- Hostnames to match for routing
   hostnames: []
+  # -- Parent references (Gateway references)
+  # Example:
+  # parentRefs:
+  #   - name: gateway-name
+  #     namespace: gateway-namespace
   parentRefs: []
 
+# -- Security context configuration
 securityContext:
+  # -- Pod-level security context
+  # Example:
+  # pod:
+  #   fsGroup: 2000
+  #   runAsNonRoot: true
   pod: ~
+  # -- Container-level security context
+  # Example:
+  # container:
+  #   allowPrivilegeEscalation: false
+  #   runAsUser: 1000
   container: ~
 
+# -- Resource requests and limits for the Kanboard container
+# Example:
+# resources:
+#   limits:
+#     cpu: 500m
+#     memory: 512Mi
+#   requests:
+#     cpu: 250m
+#     memory: 256Mi
 resources: ~
