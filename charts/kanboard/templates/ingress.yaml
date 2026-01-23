@@ -23,7 +23,7 @@ spec:
           service:
             name: {{ $name }}
             port:
-              number: {{ .Values.clusterip.port }}
+              name: http
   {{- if .Values.ingress.tls }}
   tls:
   {{- toYaml .Values.ingress.tls | nindent 2 }}
