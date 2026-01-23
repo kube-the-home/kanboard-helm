@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/kube-the-home/kanboard-helm/compare/1.1.3...1.2.0) (2026-01-23)
+
+
+### Bug Fixes
+
+* adding revisionHistoryLimit with default one ([0cd92b8](https://github.com/kube-the-home/kanboard-helm/commit/0cd92b8d65ca4ef760b39c2eb34895b91d78e1bc))
+* enable service if httproute is enabled ([25c781c](https://github.com/kube-the-home/kanboard-helm/commit/25c781c5a09500e0c439724144d529a85d029a7e))
+* renaming service and ingress ([dd7f67b](https://github.com/kube-the-home/kanboard-helm/commit/dd7f67bd12779ed91634e0ba0c7e6db24d48d3fd))
+
+
+### Features
+
+* adding gateway api support ([ce440f7](https://github.com/kube-the-home/kanboard-helm/commit/ce440f7ef41eae0d0b6a7a35d88815fdc65eea79))
+* unify clusterip and nodeport into single service category ([8279726](https://github.com/kube-the-home/kanboard-helm/commit/82797264a256209af09ce31bd7b2777abfe3e2e7))
+
 ## [1.1.3](https://github.com/kube-the-home/kanboard-helm/compare/1.1.2...1.1.3) (2026-01-23)
 
 
