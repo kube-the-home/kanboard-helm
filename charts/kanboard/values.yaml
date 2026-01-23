@@ -36,6 +36,13 @@ ingress:
   host: ~
   tls: ~
 
+route:
+  enabled: false
+  annotations: {}
+  labels: {}
+  hostnames: []
+  parentRefs: []
+  
 securityContext:
   pod: ~
   container: ~
