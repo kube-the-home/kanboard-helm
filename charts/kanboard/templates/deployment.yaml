@@ -9,6 +9,7 @@ metadata:
     app: {{ $name }}
 spec:
   replicas: 1
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
       app: {{ $name }}
