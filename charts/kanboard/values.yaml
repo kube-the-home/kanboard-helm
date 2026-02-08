@@ -5,7 +5,7 @@ image:
   # -- Docker image repository
   repository: "kanboard/kanboard"
   # -- Image tag (version) to use
-  tag: "v1.2.49" # renovate docker docker.io/kanboard/kanboard
+  tag: "v1.2.50" # renovate docker docker.io/kanboard/kanboard
   # -- Image pull policy (IfNotPresent, Always, Never)
   pullPolicy: "IfNotPresent"
 
