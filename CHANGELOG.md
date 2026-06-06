@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/kube-the-home/kanboard-helm/compare/1.2.3...1.2.4) (2026-06-06)
+
+
+### Bug Fixes
+
+* migrate to new github action reusable workflows ([5ea3c60](https://github.com/kube-the-home/kanboard-helm/commit/5ea3c605dbaea499863c93922ef66b0864114cbc))
+
 ## [1.2.3](https://github.com/kube-the-home/kanboard-helm/compare/1.2.2...1.2.3) (2026-04-07)
 
 
