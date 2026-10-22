@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   kanboard:
   - apiVersion: v2
+    created: "2026-10-22T06:21:55.865997698Z"
+    description: A Helm chart to deploy Kanboard to Kubernetes
+    digest: 5d41518b326fbca923a1445a655c32a4ee34345fdf86a301cf7f43855f30c21e
+    name: kanboard
+    type: application
+    urls:
+    - https://github.com/kube-the-home/kanboard-helm/releases/download/kanboard-1.2.7/kanboard-1.2.7.tgz
+    version: 1.2.7
+  - apiVersion: v2
     created: "2026-08-29T11:31:16.384914342Z"
     description: A Helm chart to deploy Kanboard to Kubernetes
     digest: ed616c7bf1c41916f8fb5c6c9d63882cd064b3e5cb758f590c753698b7f1a5ff
@@ -235,4 +244,4 @@ entries:
     urls:
     - https://github.com/kube-the-home/kanboard-helm/releases/download/kanboard-0.1.0/kanboard-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-29T11:31:16.385135614Z"
+generated: "2026-10-22T06:21:55.866207616Z"
