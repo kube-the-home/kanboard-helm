@@ -1,3 +1,4 @@
+{{- include "kanboard.validate" . }}
 {{- $name := include "kanboard.name" . -}}
 
 apiVersion: apps/v1

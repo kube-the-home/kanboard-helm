@@ -8,6 +8,35 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 
 {{/*
+Name of the CloudNativePG Cluster created when cnpg.enabled is true.
+*/}}
+{{- define "kanboard.cnpgClusterName" -}}
+{{- printf "%s-db" (include "kanboard.name" .) | trunc 50 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Fail rendering on conflicting values.
+*/}}
+{{- define "kanboard.validate" -}}
+{{- if .Values.cnpg.enabled }}
+{{- $db := .Values.config.database }}
+{{- $set := list }}
+{{- range $key := list "driver" "hostname" "port" "name" "username" }}
+{{- $value := index $db $key }}
+{{- if not (or (kindIs "invalid" $value) (eq (toString $value) "")) }}
+{{- $set = append $set (printf "config.database.%s" $key) }}
+{{- end }}
+{{- end }}
+{{- if $db.existingSecret.name }}
+{{- $set = append $set "config.database.existingSecret.name" }}
+{{- end }}
+{{- if $set }}
+{{- fail (printf "cnpg.enabled is true, so the external database settings must be empty, but these are set: %s" (join ", " $set)) }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
 Render a single env var from (list NAME value). Null or empty values are
 skipped so that Kanboard's upstream defaults apply; booleans render as "true"/"false".
 */}}
@@ -40,6 +69,16 @@ Skipped when existingSecret.name is not set.
 Database settings: .Values.config.database -> DB_*
 */}}
 {{- define "kanboard.config.database" -}}
+{{- if .Values.cnpg.enabled }}
+{{- $cluster := include "kanboard.cnpgClusterName" . }}
+{{- include "kanboard.envVar" (list "DB_DRIVER" "postgres") }}
+{{- include "kanboard.envVar" (list "DB_HOSTNAME" (printf "%s-rw" $cluster)) }}
+{{- include "kanboard.envVar" (list "DB_PORT" 5432) }}
+{{- include "kanboard.envVar" (list "DB_NAME" .Values.cnpg.database) }}
+{{- include "kanboard.envSecret" (list "DB_USERNAME" (dict "name" (printf "%s-app" $cluster) "key" "username")) }}
+{{- include "kanboard.envSecret" (list "DB_PASSWORD" (dict "name" (printf "%s-app" $cluster) "key" "password")) }}
+{{- include "kanboard.envVar" (list "DB_RUN_MIGRATIONS" .Values.config.database.runMigrations) }}
+{{- else }}
 {{- with .Values.config.database }}
 {{- include "kanboard.envVar" (list "DB_DRIVER" .driver) }}
 {{- include "kanboard.envVar" (list "DB_HOSTNAME" .hostname) }}
@@ -48,6 +87,7 @@ Database settings: .Values.config.database -> DB_*
 {{- include "kanboard.envVar" (list "DB_USERNAME" .username) }}
 {{- include "kanboard.envSecret" (list "DB_PASSWORD" .existingSecret) }}
 {{- include "kanboard.envVar" (list "DB_RUN_MIGRATIONS" .runMigrations) }}
+{{- end }}
 {{- end }}
 {{- end }}
 
