@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/kube-the-home/kanboard-helm/compare/1.2.9...1.3.0) (2026-11-25)
+
+
+### Features
+
+* add built-in CloudNativePG cluster support ([3c38e0e](https://github.com/kube-the-home/kanboard-helm/commit/3c38e0e3c01b73571678f31ec9971aaad3a6e224))
+* add configurable health probes using /healthcheck.php ([f55d64a](https://github.com/kube-the-home/kanboard-helm/commit/f55d64afd466997e4e5ae8624fb948140299b5e9))
+* add nodeSelector, tolerations, affinity, podAnnotations and imagePullSecrets ([c4e53be](https://github.com/kube-the-home/kanboard-helm/commit/c4e53be7dd0ba1e7e0b598e58ca998a19d1e755d))
+* add typed config values for database, mail, LDAP and reverse proxy ([f555ec0](https://github.com/kube-the-home/kanboard-helm/commit/f555ec097e31536a24faba024ed4c1f10ae8d8d0))
+
 ## [1.2.9](https://github.com/kube-the-home/kanboard-helm/compare/1.2.8...1.2.9) (2026-11-25)
 
 
