@@ -59,6 +59,34 @@ config:
     # -- Run database migrations automatically on startup (upstream default: true)
     runMigrations: ~
 
+# -- Built-in PostgreSQL via a CloudNativePG Cluster (requires the CNPG operator).
+# When enabled, Kanboard is wired to the cluster automatically, so the external
+# connection settings in config.database (driver, hostname, port, name,
+# username, existingSecret) must be left empty.
+cnpg:
+  # -- Create a CNPG Cluster and use it as Kanboard's database
+  enabled: false
+  # -- Number of PostgreSQL instances (1 primary + n-1 replicas)
+  instances: 1
+  # -- PostgreSQL image, defaults to the operator's default image
+  # Example: ghcr.io/cloudnative-pg/postgresql:17
+  imageName: ~
+  # -- Name of the database to create
+  database: kanboard
+  # -- Owner (application user) of the database
+  owner: kanboard
+  # -- Storage for each PostgreSQL instance
+  storage:
+    # -- Volume size
+    size: 1Gi
+    # -- Storage class, uses the cluster default when empty
+    storageClass: ~
+  # -- Resource requests and limits for the PostgreSQL pods
+  resources: {}
+  # -- Additional annotations for the Cluster resource. The Cluster always gets
+  # argocd.argoproj.io/sync-wave "-10" so Argo CD creates it before Kanboard.
+  annotations: {}
+
   # -- Mail configuration (MAIL_*). The official image has no working sendmail,
   # so use the smtp transport.
   mail:
