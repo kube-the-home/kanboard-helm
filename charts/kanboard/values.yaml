@@ -33,6 +33,135 @@ tolerations: []
 # -- Affinity rules for pod assignment
 affinity: {}
 
+# -- Typed Kanboard configuration, rendered to the upstream environment variables.
+# Values left at `~` (null) or "" are not rendered, so Kanboard's own defaults apply.
+# Variables set in application.env are rendered after these and take precedence.
+# Passwords are never set in plain text; reference an existing Secret via existingSecret.
+config:
+  # -- Database configuration (DB_*)
+  database:
+    # -- Database driver: sqlite, mysql or postgres (upstream default: sqlite)
+    driver: ~
+    # -- Database hostname (mysql/postgres)
+    hostname: ~
+    # -- Database port (mysql/postgres)
+    port: ~
+    # -- Database name
+    name: ~
+    # -- Database username
+    username: ~
+    # -- Existing Secret holding the database password
+    existingSecret:
+      # -- Name of the existing Secret
+      name: ~
+      # -- Key inside the existing Secret
+      key: password
+    # -- Run database migrations automatically on startup (upstream default: true)
+    runMigrations: ~
+
+  # -- Mail configuration (MAIL_*). The official image has no working sendmail,
+  # so use the smtp transport.
+  mail:
+    # -- Sender address for notifications
+    from: ~
+    # -- Mail transport: smtp, sendmail or mail
+    transport: ~
+    smtp:
+      # -- SMTP server hostname
+      hostname: ~
+      # -- SMTP server port (upstream default: 25)
+      port: ~
+      # -- SMTP username
+      username: ~
+      # -- Existing Secret holding the SMTP password
+      existingSecret:
+        # -- Name of the existing Secret
+        name: ~
+        # -- Key inside the existing Secret
+        key: password
+      # -- SMTP encryption: ssl or tls
+      encryption: ~
+
+  # -- LDAP authentication (LDAP_*)
+  ldap:
+    # -- Enable LDAP authentication
+    enabled: ~
+    # -- LDAP server, e.g. ldap.example.com or ldaps://ldap.example.com
+    server: ~
+    # -- LDAP port (upstream default: 389)
+    port: ~
+    # -- Verify the server certificate for ldaps (upstream default: true)
+    sslVerify: ~
+    # -- Use STARTTLS
+    startTls: ~
+    # -- Treat usernames as case sensitive
+    usernameCaseSensitive: ~
+    # -- Bind type: anonymous, user or proxy (upstream default: anonymous)
+    bindType: ~
+    # -- Bind username (proxy) or username pattern (user), e.g. cn=%s,dc=example,dc=com
+    username: ~
+    # -- Existing Secret holding the bind password
+    existingSecret:
+      # -- Name of the existing Secret
+      name: ~
+      # -- Key inside the existing Secret
+      key: password
+    # -- Base DN for user lookups
+    userBaseDn: ~
+    # -- User filter, e.g. (&(objectClass=user)(sAMAccountName=%s))
+    userFilter: ~
+    # -- LDAP attribute mapping
+    userAttributes:
+      # -- Username attribute (upstream default: uid)
+      username: ~
+      # -- Full name attribute (upstream default: cn)
+      fullname: ~
+      # -- Email attribute (upstream default: mail)
+      email: ~
+      # -- Group membership attribute (upstream default: memberof)
+      groups: ~
+      # -- Profile photo attribute
+      photo: ~
+      # -- Language attribute
+      language: ~
+    # -- Create Kanboard users automatically on first LDAP login (upstream default: true)
+    userCreation: ~
+    # -- Give new LDAP users the manager role by default
+    userDefaultRoleManager: ~
+    # -- DN of the group whose members become Kanboard admins
+    groupAdminDn: ~
+    # -- DN of the group whose members become Kanboard managers
+    groupManagerDn: ~
+    # -- Enable the LDAP group provider
+    groupProvider: ~
+    # -- Base DN for group lookups
+    groupBaseDn: ~
+    # -- Group filter
+    groupFilter: ~
+    # -- Filter to find the groups of a user
+    groupUserFilter: ~
+    # -- User attribute used in groupUserFilter (upstream default: username)
+    groupUserAttribute: ~
+    # -- Group name attribute (upstream default: cn)
+    groupAttributeName: ~
+    # -- Synchronize groups on login (upstream default: true)
+    groupSync: ~
+
+  # -- Reverse proxy authentication (REVERSE_PROXY_*), e.g. behind oauth2-proxy or Authelia
+  reverseProxy:
+    # -- Enable reverse proxy authentication
+    enabled: ~
+    # -- Header containing the username (upstream default: REMOTE_USER)
+    userHeader: ~
+    # -- Header containing the email address (upstream default: REMOTE_EMAIL)
+    emailHeader: ~
+    # -- Header containing the full name (upstream default: REMOTE_NAME)
+    fullnameHeader: ~
+    # -- Username that becomes admin
+    defaultAdmin: ~
+    # -- Default email domain for new users
+    defaultDomain: ~
+
 # -- Application configuration
 application:
   # -- Port on which Kanboard listens inside the container
