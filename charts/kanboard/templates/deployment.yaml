@@ -46,6 +46,24 @@ spec:
         ports:
           - containerPort: {{ .Values.application.port }}
             name: http
+        {{- with .Values.probes.startup }}
+        {{- if .enabled }}
+        startupProbe:
+          {{- toYaml (omit . "enabled") | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- with .Values.probes.liveness }}
+        {{- if .enabled }}
+        livenessProbe:
+          {{- toYaml (omit . "enabled") | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- with .Values.probes.readiness }}
+        {{- if .enabled }}
+        readinessProbe:
+          {{- toYaml (omit . "enabled") | nindent 10 }}
+        {{- end }}
+        {{- end }}
         volumeMounts:
         - mountPath: /var/www/app/data
           name: storage-volume
