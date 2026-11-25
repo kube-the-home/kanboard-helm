@@ -39,7 +39,39 @@ application:
   #   - name: DEBUG
   #     value: "true"
   env: []
-    
+
+# -- Health probes for the Kanboard container. Upstream exposes /healthcheck.php
+# (since Kanboard 1.2.46), which returns 200 when the database connection is OK
+# and 503 otherwise. Every key except `enabled` is passed through as the probe spec.
+probes:
+  # -- Startup probe, gives database migrations time to finish on first boot
+  startup:
+    enabled: true
+    httpGet:
+      path: /healthcheck.php
+      port: http
+    periodSeconds: 5
+    timeoutSeconds: 5
+    failureThreshold: 30
+  # -- Liveness probe, restarts the container when Kanboard stops responding
+  liveness:
+    enabled: true
+    httpGet:
+      path: /healthcheck.php
+      port: http
+    periodSeconds: 30
+    timeoutSeconds: 5
+    failureThreshold: 3
+  # -- Readiness probe, removes the pod from the Service while the database is unreachable
+  readiness:
+    enabled: true
+    httpGet:
+      path: /healthcheck.php
+      port: http
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+
 # -- Kubernetes Service configuration
 service:
   # -- Enable service creation, will also be created if ingress or route is enabled
