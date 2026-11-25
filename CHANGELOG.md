@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/kube-the-home/kanboard-helm/compare/1.2.8...1.2.9) (2026-11-25)
+
+
+### Bug Fixes
+
+* **deps:** update docker.io/kanboard/kanboard docker tag to v1.2.58 ([11e398b](https://github.com/kube-the-home/kanboard-helm/commit/11e398bdb705757e2a45ec663c7057582cad49ba))
+
 ## [1.2.8](https://github.com/kube-the-home/kanboard-helm/compare/1.2.7...1.2.8) (2026-11-05)
 
 
