@@ -9,8 +9,29 @@ image:
   # -- Image pull policy (IfNotPresent, Always, Never)
   pullPolicy: "IfNotPresent"
 
+# -- Secrets for pulling the image from a private registry
+# Example:
+# imagePullSecrets:
+#   - name: regcred
+imagePullSecrets: []
+
 # -- Number of old ReplicaSets to retain for rollback
 revisionHistoryLimit: 1
+
+# -- Annotations to add to the Kanboard pod
+podAnnotations: {}
+
+# -- Node labels for pod assignment
+# Example:
+# nodeSelector:
+#   kubernetes.io/arch: amd64
+nodeSelector: {}
+
+# -- Tolerations for pod assignment
+tolerations: []
+
+# -- Affinity rules for pod assignment
+affinity: {}
 
 # -- Application configuration
 application:
